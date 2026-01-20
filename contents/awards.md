@@ -1,3 +1,3 @@
-- 校级一等奖学金, 2022.  
+- 人民奖学金，2023.  
 
-- Outstanding Graduation Thesis, XXX University, 2023. 
+- 人民奖学金，2024.
