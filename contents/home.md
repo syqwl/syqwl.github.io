@@ -1,4 +1,4 @@
-[![XX](https://img.shields.io/badge/syqwl-github-blue?logo=github)](https://github.com/syqwl)
+[![syq](https://img.shields.io/badge/syqwl-github-blue?logo=github)](https://github.com/syqwl)
 
 #### Email  
 <code>2820926712@qq.com</code>  
