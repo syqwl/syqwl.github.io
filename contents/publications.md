@@ -2,7 +2,7 @@
   <div class="paper-box-image">
     <div>
       <div class="badge">ICML 2026 (Conference Submission)</div>
-      <img src="static/assets/publication1.png" alt="Uni-SLTP" width="100%">
+      <img src="/static/assets/publication1.png" alt="Uni-SLTP" width="100%">
     </div>
   </div>
   <div class="paper-box-text">
@@ -16,7 +16,7 @@
   <div class="paper-box-image">
     <div>
       <div class="badge">KDD 2026 (Conference Submission)</div>
-      <img src="static/assets/publication2.png" alt="Rejection-Aware Best-of-N" width="100%">
+      <img src="/static/assets/publication2.png" alt="Rejection-Aware Best-of-N" width="100%">
     </div>
   </div>
   <div class="paper-box-text">

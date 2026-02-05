@@ -1,4 +1,5 @@
-const content_dir = 'contents/'
+// Root-relative paths for GitHub Pages (works when site is at origin root)
+const content_dir = '/contents/'
 const config_file = 'config.yml'
 const lang_file = 'lang.yml'
 const section_names = ['home', 'about', 'education-experience', 'research-interests', 'publications', 'awards'];
