@@ -1,0 +1,35 @@
+# 中英文切换文案
+en:
+  affiliation: Nanjing University
+  location: Suzhou, China
+  motto: Stay curious. Move steadily. Build something that lasts.
+  intro: Undergraduate in Software Engineering, with research interests in machine learning, large language models, and computer vision.
+  nav_brand: "Sun Yaqi's Personal Homepage"
+  nav_home: Home
+  nav_about: About
+  nav_education_experience: Education & Experience
+  nav_research: Research Interests
+  nav_publications: Publications
+  nav_awards: Honors & Awards
+  section_about: About Me
+  section_education_experience: Education & Experience
+  section_research: Research Interests
+  section_publications: Publications
+  section_awards: Honors & Awards
+zh:
+  affiliation: 南京大学
+  location: 苏州，中国
+  motto: 保持好奇，稳步前行，持之以恒。
+  intro: 软件工程专业本科生，主要研究方向为机器学习、大语言模型与计算机视觉。
+  nav_brand: 孙雅琪的个人主页
+  nav_home: 首页
+  nav_about: 关于我
+  nav_education_experience: 教育&经历
+  nav_research: 研究兴趣
+  nav_publications: 成果
+  nav_awards: 荣誉&奖项
+  section_about: 关于我
+  section_education_experience: 教育&经历
+  section_research: 研究兴趣
+  section_publications: 成果
+  section_awards: 荣誉&奖项

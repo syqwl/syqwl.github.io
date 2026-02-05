@@ -1,0 +1,3 @@
+- **Jan 2026**: Joined Fanruan Software as an R&D intern.
+- **2025**: Nanjing University People's Scholarship.
+- **2023**: Nanjing University People's Scholarship.

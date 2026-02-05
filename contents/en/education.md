@@ -1,0 +1,2 @@
+- **Sep 2023 – present**, Software Engineering (Intelligent Software), School of Intelligent Software and Engineering, Nanjing University.
+- GPA: 4.23 / 5.0.
