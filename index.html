@@ -15,10 +15,9 @@
     <!-- Bootstrap icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 
-    <!-- Google fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;500;700&display=swap" rel="stylesheet" />
+    <!-- Google fonts: Inter (clean sans-serif, highly readable) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Core CSS -->
     <link href="static/css/styles.css" rel="stylesheet" />
@@ -51,104 +50,105 @@
 
 <body id="page-top">
 
-<!-- ===================== NAV ===================== -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="#page-top">Sun Yaqi</a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#awards">Awards</a></li>
-                <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- ===================== HEADER ===================== -->
-<header class="py-5 bg-light" id="home">
-    <div class="container">
-        <div class="row align-items-center">
-
-            <!-- Avatar -->
-            <div class="col-md-3 text-center mb-4 mb-md-0">
-                <img src="./static/assets/img/photo.jpg"
-                     class="img-fluid rounded shadow"
-                     style="max-width:200px;">
+    <!-- ===================== NAV ===================== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <div class="navbar-brand-wrap d-flex align-items-center me-auto">
+                <a class="navbar-brand nav-brand-text" href="#page-top"><span data-i18n="nav_brand">孙雅琪的个人主页</span></a>
+                <div class="lang-switcher lang-switcher-left ms-3">
+                    <a class="nav-link lang-btn active" href="#" data-lang="zh" aria-label="中文">中文</a>
+                    <span class="lang-divider">/</span>
+                    <a class="nav-link lang-btn" href="#" data-lang="en" aria-label="English">English</a>
+                </div>
             </div>
 
-            <!-- Info -->
-            <div class="col-md-9">
-                <h1 class="fw-bold mb-1">
-                    Sun Yaqi
-                    <span style="font-family: 华文行楷; font-size: 28px;">孙雅琪</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#home" data-i18n="nav_home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about" data-i18n="nav_about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#education-experience"
+                            data-i18n="nav_education_experience">Education & Experience</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#research-interests"
+                            data-i18n="nav_research">Research Interests</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#publications"
+                            data-i18n="nav_publications">Publications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#awards" data-i18n="nav_awards">Awards</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===================== LAYOUT: LEFT SIDEBAR (HOME) + RIGHT CONTENT ===================== -->
+    <div class="layout-wrapper">
+        <!-- Left: Fixed Home sidebar -->
+        <aside class="layout-sidebar" id="home">
+            <div class="sidebar-top">
+                <div class="sidebar-photo-wrap">
+                    <img src="./static/assets/img/photo.jpg" alt="Photo" class="sidebar-photo" />
+                </div>
+                <h1 class="sidebar-name">
+                    <span id="name">Sun Yaqi</span>
+                    <span class="sidebar-name-zh" id="name_zh">孙雅琪</span>
                 </h1>
-
-                <p class="text-muted mb-2">
-                    软件工程专业本科生，主要研究方向为机器学习、大语言模型与计算机视觉。
-                </p>
-
-<!--                <p class="mb-3">-->
-<!--                    有志于申请博士学位，研究兴趣包括-->
-<!--                    <strong>人工智能、计算机视觉以及多模态学习</strong>.-->
-<!--                </p>-->
-
-                <!-- Markdown intro -->
-                <div id="home-md"></div>
+                <p class="sidebar-affiliation" id="affiliation">Nanjing University</p>
             </div>
+            <div class="sidebar-bottom">
+                <div class="sidebar-contact">
+                    <div id="home-md"><!-- Filled from home.md: GitHub, email --></div>
+                    <p class="contact-line"><i class="bi bi-geo-alt-fill"></i> <span id="location">苏州，中国</span></p>
+                </div>
+            </div>
+        </aside>
 
-        </div>
+        <!-- Right: Scrollable content -->
+        <main class="layout-main">
+            <!-- About Me -->
+            <section class="py-5 section-block" id="about">
+                <h2 class="section-title">
+                    <span class="section-icon">👩‍🎓</span> <span data-i18n="section_about">About Me</span>
+                </h2>
+                <div id="about-md"></div>
+            </section>
+
+            <!-- Education & Experience (merged) -->
+            <section class="py-5 section-block section-alt" id="education-experience">
+                <h2 class="section-title">
+                    <span class="section-icon">📚</span> <span data-i18n="section_education_experience">Education &
+                        Experience</span>
+                </h2>
+                <div id="education-experience-md"></div>
+            </section>
+
+            <!-- Research Interests -->
+            <section class="py-5 section-block" id="research-interests">
+                <h2 class="section-title">
+                    <span class="section-icon">🧠</span> <span data-i18n="section_research">Research Interests</span>
+                </h2>
+                <div id="research-interests-md"></div>
+            </section>
+
+            <!-- Publications -->
+            <section class="py-5 section-block section-alt" id="publications">
+                <h2 class="section-title">
+                    <span class="section-icon">📝</span> <span data-i18n="section_publications">Publications</span>
+                </h2>
+                <div id="publications-md"></div>
+            </section>
+
+            <!-- Awards -->
+            <section class="py-5 section-block" id="awards">
+                <h2 class="section-title">
+                    <span class="section-icon">🏅</span> <span data-i18n="section_awards">Awards</span>
+                </h2>
+                <div id="awards-md"></div>
+            </section>
+        </main>
     </div>
-</header>
-
-<hr class="m-0">
-
-<!-- ===================== AWARDS ===================== -->
-<section class="py-5 bg-white" id="awards">
-    <div class="container">
-        <h2 class="mb-4">
-            <i class="bi bi-award-fill"></i> Awards
-        </h2>
-        <div id="awards-md"></div>
-    </div>
-</section>
-
-<!-- ===================== EXPERIENCE ===================== -->
-<section class="py-5 bg-light" id="experience">
-    <div class="container">
-        <h2 class="mb-4">
-            <i class="bi bi-briefcase-fill"></i> Experience
-        </h2>
-        <div id="experience-md"></div>
-    </div>
-</section>
-
-<!-- ===================== PUBLICATIONS ===================== -->
-<section class="py-5 bg-white" id="publications">
-    <div class="container">
-        <h2 class="mb-4">
-            <i class="bi bi-file-text-fill"></i> Publications
-        </h2>
-        <div id="publications-md"></div>
-    </div>
-</section>
-
-<!-- ===================== FOOTER ===================== -->
-<footer class="py-4 bg-dark text-center">
-    <div class="container">
-        <p class="text-white-50 small mb-2">
-            © 2026 Sun Yaqi. All rights reserved.
-        </p>
-        <a class="text-white-50 small" href="https://github.com/syqwl">GitHub</a>
-    </div>
-</footer>
 
 </body>
+
 </html>

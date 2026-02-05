@@ -1,63 +1,106 @@
 const content_dir = 'contents/'
 const config_file = 'config.yml'
-const section_names = ['home', 'awards', 'experience', 'publications'];
+const lang_file = 'lang.yml'
+const section_names = ['home', 'about', 'education-experience', 'research-interests', 'publications', 'awards'];
+const section_files = {
+    'home': 'home',
+    'about': 'about',
+    'education-experience': 'education-experience',
+    'research-interests': 'research-interests',
+    'publications': 'publications',
+    'awards': 'awards'
+};
 
+let currentLang = localStorage.getItem('lang') || 'zh';
+let langData = { en: {}, zh: {} };
 
-window.addEventListener('DOMContentLoaded', event => {
+function getContentDir() {
+    return currentLang === 'en' ? content_dir + 'en/' : content_dir;
+}
 
-    // Activate Bootstrap scrollspy on the main nav element
-    const mainNav = document.body.querySelector('#mainNav');
-    if (mainNav) {
-        new bootstrap.ScrollSpy(document.body, {
-            target: '#mainNav',
-            offset: 74,
-        });
-    };
+function applyLang() {
+    const data = langData[currentLang];
+    if (!data) return;
+    ['affiliation', 'location', 'motto', 'intro'].forEach(key => {
+        const el = document.getElementById(key);
+        if (el && data[key]) el.textContent = data[key];
+    });
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const v = data[el.dataset.i18n];
+        if (v) el.textContent = v;
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === currentLang);
+    });
+}
 
-    // Collapse responsive navbar when toggler is visible
+function loadMarkdown() {
+    marked.use({ mangle: false, headerIds: false });
+    const dir = getContentDir();
+    section_names.forEach((name) => {
+        const file = section_files[name] || name;
+        fetch(dir + file + '.md')
+            .then(response => response.text())
+            .then(markdown => {
+                const html = marked.parse(markdown);
+                const el = document.getElementById(name + '-md');
+                if (el) el.innerHTML = html;
+            })
+            .then(() => { if (window.MathJax) MathJax.typeset(); })
+            .catch(() => {
+                const fallback = currentLang === 'en' ? content_dir : content_dir + 'en/';
+                if (fallback !== dir) fetch(fallback + file + '.md').then(r => r.text()).then(md => {
+                    const el = document.getElementById(name + '-md');
+                    if (el) el.innerHTML = marked.parse(md);
+                }).catch(() => { });
+            });
+    });
+}
+
+function setLang(lang) {
+    if (lang === currentLang) return;
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    applyLang();
+    loadMarkdown();
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+
     const navbarToggler = document.body.querySelector('.navbar-toggler');
-    const responsiveNavItems = [].slice.call(
-        document.querySelectorAll('#navbarResponsive .nav-link')
-    );
-    responsiveNavItems.map(function (responsiveNavItem) {
-        responsiveNavItem.addEventListener('click', () => {
-            if (window.getComputedStyle(navbarToggler).display !== 'none') {
-                navbarToggler.click();
-            }
+    document.querySelectorAll('#navbarResponsive .nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navbarToggler && window.getComputedStyle(navbarToggler).display !== 'none') navbarToggler.click();
         });
     });
 
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            setLang(btn.dataset.lang);
+        });
+    });
 
-    // Yaml
     fetch(content_dir + config_file)
         .then(response => response.text())
         .then(text => {
             const yml = jsyaml.load(text);
             Object.keys(yml).forEach(key => {
                 try {
-                    document.getElementById(key).innerHTML = yml[key];
-                } catch {
-                    console.log("Unknown id and value: " + key + "," + yml[key].toString())
-                }
-
-            })
+                    const el = document.getElementById(key);
+                    if (el && key !== 'affiliation' && key !== 'location' && key !== 'motto' && key !== 'intro') el.innerHTML = yml[key];
+                } catch (_) { }
+            });
         })
-        .catch(error => console.log(error));
+        .catch(() => { });
 
+    fetch(content_dir + lang_file)
+        .then(response => response.text())
+        .then(text => {
+            langData = jsyaml.load(text);
+            applyLang();
+        })
+        .catch(() => { });
 
-    // Marked
-    marked.use({ mangle: false, headerIds: false })
-    section_names.forEach((name, idx) => {
-        fetch(content_dir + name + '.md')
-            .then(response => response.text())
-            .then(markdown => {
-                const html = marked.parse(markdown);
-                document.getElementById(name + '-md').innerHTML = html;
-            }).then(() => {
-                // MathJax
-                MathJax.typeset();
-            })
-            .catch(error => console.log(error));
-    })
-
-}); 
+    loadMarkdown();
+});
